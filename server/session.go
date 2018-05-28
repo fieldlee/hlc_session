@@ -19,7 +19,7 @@ type LoginResult struct {
 
 func (this Remote) SessionInsertion(args []byte, result *LoginResult) error {
 	err := json.Unmarshal(args, result)
-	log.Println(result)
+
 	if err != nil {
 		log.Println(err.Error())
 		return err
@@ -36,7 +36,7 @@ func (this Remote) SessionInsertion(args []byte, result *LoginResult) error {
 		message[1][1:len(message[1]) - 1],
 		0,
 	}
-
+	log.Println(token)
 	model.Logined[result.Token] = token
 
 	go token.Count(result.Token, result.Exp - time.Now().Unix())
