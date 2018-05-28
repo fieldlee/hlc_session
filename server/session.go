@@ -19,6 +19,7 @@ type LoginResult struct {
 
 func (this Remote) SessionInsertion(args []byte, result *LoginResult) error {
 	err := json.Unmarshal(args, result)
+	log.Println(result)
 	if err != nil {
 		log.Println(err.Error())
 		return err
